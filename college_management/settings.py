@@ -19,7 +19,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ['your-heroku-app-name.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Quick-start development settings - unsuitable for production
@@ -95,6 +95,10 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306',
     }
+}
+
+DATABASES = {
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
 # Password validation
