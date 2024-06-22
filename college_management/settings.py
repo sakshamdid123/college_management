@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from decouple import config
 
 """
 Django settings for college_management project.
