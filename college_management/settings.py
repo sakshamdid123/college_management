@@ -1,21 +1,6 @@
 import os
 from pathlib import Path
-import dj_database_url
 from decouple import config
-
-# Read environment variables from the .env file
-DEBUG = config('DEBUG', default=False, cast=bool)
-
-SECRET_KEY = config('SECRET_KEY')
-
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='.yourdomain.com,localhost,127.0.0.1,college-management-qn9m.onrender.com').split(',')
-
-# Database configuration
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
 
 """
 Django settings for college_management project.
