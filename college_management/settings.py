@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -71,11 +72,11 @@ WSGI_APPLICATION = 'college_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'student_database',
-        'USER': 'root',
-        'PASSWORD': 'sakshamd26',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': config('DB_NAME', default='railway'),
+        'USER': config('DB_USER', default='root'),
+        'PASSWORD': config('DB_PASSWORD', default='WzDiMcypAnwwzWFqLIgfpSsmDrGtpzke'),
+        'HOST': config('DB_HOST', default='roundhouse.proxy.rlwy.net'),
+        'PORT': config('DB_PORT', default='52317'),
     }
 }
 
