@@ -1,7 +1,5 @@
 import os
 from pathlib import Path
-from decouple import config
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -70,11 +68,15 @@ WSGI_APPLICATION = 'college_management.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'student_database',
+        'USER': 'root',
+        'PASSWORD': 'sakshamd26',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
 }
 
 # Password validation
