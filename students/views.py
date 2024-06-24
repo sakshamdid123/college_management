@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
+import json
 from .models import Student
+from .models import TallyResponse
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
@@ -64,3 +66,21 @@ def update_contact(request):
         student.save()
         return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error'}, status=400)
+
+@csrf_exempt
+def tally_webhook(request):
+    if request.method == 'POST':
+        payload = json.loads(request.body)
+        question = payload['fields'][0]['value']
+        response = payload['fields'][1]['value']
+
+        TallyResponse.objects.create(
+            question=question,
+            response=response
+        )
+        return JsonResponse({'status': 'success'}, status=201)
+    return JsonResponse({'status': 'error'}, status=400)
+
+def tally_results_view(request):
+    responses = TallyResponse.objects.all()
+    return render(request, 'tally_results.html', {'responses': responses})
