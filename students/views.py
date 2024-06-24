@@ -12,6 +12,9 @@ from django.template.loader import render_to_string
 from django.urls import reverse
 import tempfile
 import os
+import logging
+
+logger = logging.getLogger(__name__)
 
 def student_list(request):
     students = Student.objects.all()
@@ -70,13 +73,21 @@ def update_contact(request):
 @csrf_exempt
 def webhook(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        student_id = data.get('student_id')
-        new_phone_number = data.get('new_phone_number')
-        requesting.objects.create(student_id=student_id, new_phone_number=new_phone_number)
-        return JsonResponse({'status': 'success'}, status=200)
+        try:
+            data = json.loads(request.body)
+            student_id = data.get('student_id')
+            new_phone_number = data.get('new_phone_number')
+            
+            if not student_id or not new_phone_number:
+                logger.error('Missing student_id or new_phone_number in the request data')
+                return JsonResponse({'status': 'failed', 'reason': 'missing_data'}, status=400)
+            
+            requesting.objects.create(student_id=student_id, new_phone_number=new_phone_number)
+            return JsonResponse({'status': 'success'}, status=200)
+        except json.JSONDecodeError:
+            logger.error('Invalid JSON received')
+            return JsonResponse({'status': 'failed', 'reason': 'invalid_json'}, status=400)
     return JsonResponse({'status': 'failed'}, status=400)
-
 def requests(request):
     update_requests = requesting.objects.filter(confirmed=False)
     return render(request, 'students/requests.html', {'update_requests': update_requests})
