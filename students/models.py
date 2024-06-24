@@ -19,3 +19,11 @@ class Student(models.Model):
 
     def __str__(self):
         return self.student_name
+
+class requesting(models.Model):
+    student_id = models.CharField(max_length=20)
+    new_phone_number = models.CharField(max_length=15)
+    confirmed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.student_id} - {self.new_phone_number}'

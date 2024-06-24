@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import Student, requesting
 import json
-from .models import Student
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404
 import csv
 from django.core.files.storage import default_storage
 from io import StringIO
@@ -65,3 +66,31 @@ def update_contact(request):
         student.save()
         return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error'}, status=400)
+
+@csrf_exempt
+def webhook(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        student_id = data.get('student_id')
+        new_phone_number = data.get('new_phone_number')
+        UpdateRequest.objects.create(student_id=student_id, new_phone_number=new_phone_number)
+        return JsonResponse({'status': 'success'}, status=200)
+    return JsonResponse({'status': 'failed'}, status=400)
+
+def requests(request):
+    update_requests = requesting.objects.filter(confirmed=False)
+    return render(request, 'students/requests.html', {'update_requests': update_requests})
+
+def update_request(request, request_id):
+    update_request = get_object_or_404(requesting, id=request_id)
+    if request.GET.get('confirm') == 'yes':
+        student = get_object_or_404(Student, student_id=update_request.student_id)
+        student.student_mobile_number = update_request.new_phone_number
+        student.save()
+        update_request.confirmed = True
+        update_request.save()
+    else:
+        update_request.delete()
+    return redirect('requests')
+
+

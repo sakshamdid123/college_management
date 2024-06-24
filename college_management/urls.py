@@ -9,5 +9,8 @@ urlpatterns = [
     path('update/<str:pk>/', views.update_student, name='update_student'),
     path('students/update_contact/', views.update_contact, name='update_contact'),
     path('search_suggestions/', views.search_suggestions, name='search_suggestions'),
+    path('webhook/', views.webhook, name='webhook'),
+    path('requests/', views.requests, name='requests'),  # Add the view to display requests
+    path('update_request/<int:request_id>/', views.update_request, name='update_request'),
 ]
 

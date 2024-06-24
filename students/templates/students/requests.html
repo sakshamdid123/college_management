@@ -1,0 +1,22 @@
+<!-- students/templates/students/requests.html -->
+<table>
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>New Phone Number</th>
+            <th>Confirm</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for req in update_requests %}
+        <tr>
+            <td>{{ req.student_id }}</td>
+            <td>{{ req.new_phone_number }}</td>
+            <td>
+                <a href="{% url 'update_request' req.id %}?confirm=yes">Yes</a>
+                <a href="{% url 'update_request' req.id %}?confirm=no">No</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
