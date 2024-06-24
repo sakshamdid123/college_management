@@ -63,27 +63,6 @@
     </style>
 </head>
 
-<head>
-    <title>Tally Results</title>
-</head>
-<body>
-    <h1>Tally Results</h1>
-    <table border="1">
-        <tr>
-            <th>Question</th>
-            <th>Response</th>
-            <th>Timestamp</th>
-        </tr>
-        {% for response in responses %}
-        <tr>
-            <td>{{ response.question }}</td>
-            <td>{{ response.response }}</td>
-            <td>{{ response.timestamp }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-
 <body>
     <div class="container mt-4">
         <h1>Student List</h1>
