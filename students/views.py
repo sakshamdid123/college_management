@@ -73,7 +73,7 @@ def webhook(request):
         data = json.loads(request.body)
         student_id = data.get('student_id')
         new_phone_number = data.get('new_phone_number')
-        UpdateRequest.objects.create(student_id=student_id, new_phone_number=new_phone_number)
+        requesting.objects.create(student_id=student_id, new_phone_number=new_phone_number)
         return JsonResponse({'status': 'success'}, status=200)
     return JsonResponse({'status': 'failed'}, status=400)
 
