@@ -1,22 +1,28 @@
-<!-- students/templates/students/requests.html -->
-<table>
-    <thead>
-        <tr>
-            <th>Student ID</th>
-            <th>New Phone Number</th>
-            <th>Confirm</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for req in update_requests %}
-        <tr>
-            <td>{{ req.student_id }}</td>
-            <td>{{ req.new_phone_number }}</td>
-            <td>
-                <a href="{% url 'update_request' req.id %}?confirm=yes">Yes</a>
-                <a href="{% url 'update_request' req.id %}?confirm=no">No</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% extends "students/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-4 mb-4">Update Requests</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Student ID</th>
+                <th>New Phone Number</th>
+                <th>Confirm</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in update_requests %}
+                <tr>
+                    <td>{{ request.0 }}</td>
+                    <td>{{ request.1 }}</td>
+                    <td>
+                        <a href="{% url 'update_request' request.0 %}?confirm=yes" class="btn btn-success">Yes</a>
+                        <a href="{% url 'update_request' request.0 %}?confirm=no" class="btn btn-danger">No</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

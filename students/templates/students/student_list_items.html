@@ -6,7 +6,6 @@
     <td>{{ student.student_mobile_number }}</td>
     <td>{{ student.personal_email }}</td>
     <td>
-        <a href="{% url 'update_student' student.pk %}"><i class="bi bi-pencil-square"></i></a>
         <a href="#" class="change-contact" data-id="{{ student.pk }}" data-name="{{ student.student_name }}" data-phone="{{ student.student_mobile_number }}" data-email="{{ student.personal_email }}"><i class="bi bi-telephone"></i></a>
     </td>
 </tr>

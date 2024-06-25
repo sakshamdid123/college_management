@@ -1,0 +1,46 @@
+<!-- Change Contact Details Modal -->
+<div class="modal fade" id="changeContactModal" tabindex="-1" role="dialog" aria-labelledby="changeContactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changeContactModalLabel">Change Contact Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="changeContactForm">
+                    <div class="form-group">
+                        <label for="changeOption">What would you like to change?</label>
+                        <select class="form-control" id="changeOption">
+                            <option value="" selected disabled>Select an option</option>
+                            <option value="phone">Mobile Number</option>
+                            <option value="email">Personal Email</option>
+                        </select>
+                    </div>
+                    <div id="phoneFields" class="d-none">
+                        <div class="form-group">
+                            <label for="oldPhone">Old Mobile Number</label>
+                            <input type="text" id="oldPhone" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPhone">New Mobile Number</label>
+                            <input type="text" id="newPhone" name="newPhone" class="form-control">
+                        </div>
+                    </div>
+                    <div id="emailFields" class="d-none">
+                        <div class="form-group">
+                            <label for="oldEmail">Old Personal Email</label>
+                            <input type="email" id="oldEmail" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="newEmail">New Personal Email</label>
+                            <input type="email" id="newEmail" name="newEmail" class="form-control">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -52,7 +52,7 @@ ROOT_URLCONF = 'college_management.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'students/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,11 +72,11 @@ WSGI_APPLICATION = 'college_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME', default='railway'),
+        'NAME': config('DB_NAME', default='student_database'),
         'USER': config('DB_USER', default='root'),
-        'PASSWORD': config('DB_PASSWORD', default='WzDiMcypAnwwzWFqLIgfpSsmDrGtpzke'),
-        'HOST': config('DB_HOST', default='roundhouse.proxy.rlwy.net'),
-        'PORT': config('DB_PORT', default='52317'),
+        'PASSWORD': config('DB_PASSWORD', default='sakshamd26'),
+        'HOST': config('DB_HOST', default='localhost'),
+        'PORT': config('DB_PORT', default='3306'),
     }
 }
 
