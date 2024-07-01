@@ -1,4 +1,4 @@
-SERVICE_ACCOUNT_JSON={
+{
   "type": "service_account",
   "project_id": "collegemanagement-427410",
   "private_key_id": "1c5c8766d36658c0898244f0a6c519132bbca17c",
@@ -11,12 +11,3 @@ SERVICE_ACCOUNT_JSON={
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/theplacementcellsrcc%40collegemanagement-427410.iam.gserviceaccount.com",
   "universe_domain": "googleapis.com"
 }
-
-SHEET_ID=1I5-Yre2sUJq-8j2aKZkjsKxtc-9LMcdhxWvu-OzhwO8
-RANGE_NAME=Sheet1!A:Z
-
-DB_NAME=student_database
-DB_USER=root
-DB_PASSWORD=sakshamd26
-DB_HOST=localhost
-DB_PORT=3306

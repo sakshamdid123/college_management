@@ -1,0 +1,5 @@
+# Ignore the Google service account key file
+.json
+
+# Ignore the .env file
+.env

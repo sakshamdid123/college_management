@@ -1,16 +1,26 @@
 import os
 import json
+import csv
+from google.oauth2 import service_account
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from django.conf import settings
-from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
 from django.template.loader import render_to_string
 from students.models import Student
+from django.http import HttpResponse
+from decouple import config
 
-# Your Google Sheet ID and range
-SHEET_ID = '1I5-Yre2sUJq-8j2aKZkjsKxtc-9LMcdhxWvu-OzhwO8'
-RANGE_NAME = 'Sheet1!A:Z'
+# Access the settings dictionary
+service_account_info = settings.SETTINGS_EXPORT['SERVICE_ACCOUNT_INFO']
+SHEET_ID = settings.SETTINGS_EXPORT['SHEET_ID']
+RANGE_NAME = settings.SETTINGS_EXPORT['RANGE_NAME']
+
+# Debug prints for verification
+print("SERVICE_ACCOUNT_JSON in views:", service_account_info)
+print("SHEET_ID in views:", SHEET_ID)
+print("RANGE_NAME in views:", RANGE_NAME)
 
 def student_list(request):
     students = Student.objects.all()
@@ -39,15 +49,9 @@ def search_suggestions(request):
 
     return JsonResponse({'suggestions': suggestions_data, 'html': html})
 
-def get_google_sheet_data():
-    credentials_info = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
-
-    # Ensure credentials_info is a dictionary
-    if isinstance(credentials_info, str):
-        credentials_info = json.loads(credentials_info)
-
+def get_sheet_data():
     creds = Credentials.from_service_account_info(
-        credentials_info,
+        service_account_info,
         scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"],
     )
 
@@ -60,7 +64,7 @@ def get_google_sheet_data():
     return values
 
 def dashboard_data(request):
-    data = get_google_sheet_data()
+    data = get_sheet_data()
     return JsonResponse(data, safe=False)
 
 def dashboard_view(request):
