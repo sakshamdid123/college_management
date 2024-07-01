@@ -1,5 +1,4 @@
 import os
-import json
 import csv
 from google.oauth2 import service_account
 from google.oauth2.service_account import Credentials
@@ -10,17 +9,11 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from students.models import Student
 from django.http import HttpResponse
-from decouple import config
 
-# Access the settings dictionary
-service_account_info = settings.SETTINGS_EXPORT['SERVICE_ACCOUNT_INFO']
-SHEET_ID = settings.SETTINGS_EXPORT['SHEET_ID']
-RANGE_NAME = settings.SETTINGS_EXPORT['RANGE_NAME']
-
-# Debug prints for verification
-print("SERVICE_ACCOUNT_JSON in views:", service_account_info)
-print("SHEET_ID in views:", SHEET_ID)
-print("RANGE_NAME in views:", RANGE_NAME)
+# Your Google Sheet ID and range
+SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'collegemanagement-427410-a15b45b5e2f3.json')
+SHEET_ID = '1I5-Yre2sUJq-8j2aKZkjsKxtc-9LMcdhxWvu-OzhwO8'
+RANGE_NAME = 'Sheet1!A:Z'
 
 def student_list(request):
     students = Student.objects.all()
@@ -50,8 +43,8 @@ def search_suggestions(request):
     return JsonResponse({'suggestions': suggestions_data, 'html': html})
 
 def get_sheet_data():
-    creds = Credentials.from_service_account_info(
-        service_account_info,
+    creds = Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE,
         scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"],
     )
 
