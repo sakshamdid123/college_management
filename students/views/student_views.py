@@ -1,17 +1,14 @@
 import os
-import csv
-from google.oauth2 import service_account
+import json
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from django.conf import settings
-from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
+from django.shortcuts import render
+from django.http import JsonResponse, HttpResponse
 from django.template.loader import render_to_string
 from students.models import Student
-from django.http import HttpResponse
 
 # Your Google Sheet ID and range
-SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'collegemanagement-427410-2c12decd0b05.json')
 SHEET_ID = '1I5-Yre2sUJq-8j2aKZkjsKxtc-9LMcdhxWvu-OzhwO8'
 RANGE_NAME = 'Sheet1!A:Z'
 
@@ -42,9 +39,15 @@ def search_suggestions(request):
 
     return JsonResponse({'suggestions': suggestions_data, 'html': html})
 
-def get_sheet_data():
-    creds = Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE,
+def get_google_sheet_data():
+    credentials_info = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+
+    # Ensure credentials_info is a dictionary
+    if isinstance(credentials_info, str):
+        credentials_info = json.loads(credentials_info)
+
+    creds = Credentials.from_service_account_info(
+        credentials_info,
         scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"],
     )
 
@@ -57,7 +60,7 @@ def get_sheet_data():
     return values
 
 def dashboard_data(request):
-    data = get_sheet_data()
+    data = get_google_sheet_data()
     return JsonResponse(data, safe=False)
 
 def dashboard_view(request):

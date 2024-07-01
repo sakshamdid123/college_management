@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "collegemanagement-427410",
+  "private_key_id": "5e3b58b5e86d50f58ac8d001a0e2290ffaf9eace",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCgh8oHtxB6Wi6D\nW0E7D3YG2ZZGVb/d8VmGts40AxmG67iQ9Oj4DnwoxL9F2fgJqlHCdqrl925vHKkk\nHoLqT+VRuiOIRcfM7QUROjdkeP1wLnlbv2xv2sj5+gjl0EmWSFGat3VNwxo1eeS5\nU6/cnWwNz7H9PiVAMVp5WkERogaNlQ8fWdkFvBqSuMNzJ07cHvHnn4UIVxW/FX6T\nkqxX6WXbzcD1GlFmRIZmCQQkDxAUA1HYwEl0frfFgiFadl6lFFQj7tzS0ROWGlJS\n0XgbBNHs03S2NYn4QcNqguMWBuKG0x5DwZv/28BRl98MnvJiwgbUOMH4PEOrR3Sq\nuoN+pQ1bAgMBAAECggEAUBa/AC9gbLJ+XzGRbz5M86jttMSGN1v4fuHIKaHcQ/hp\negR+EHflkM9r4BUZjvTm2n6qz5WtBolFh4wjY3Qd5DLaFFxADOi5bPle9mT4iFXf\nXRs5JesA9to8Qy+x7uTAtdBOmU+7zS81ohJy/D2b0Z4r3jz5h7e3vDB/oyTzYQHR\nH9MjaUyES+W4doRYU8gSu5Q0d08cUbTKShlpkfTn7e71K9q03WIWGrLKNb+SYSPH\nokylHJR8n9KGbpQIcJTg6K29sFkchQ73ktToLt0L+a6iM0x0T7oyk50Xyx4x9LiH\ncF0FUXUUaiWCwZDsKN+2/TkA5odNwQ9O4hBojvq8kQKBgQDNjXbz002k7gTYi1Cx\nC0ZhxQsQBEJbKzQ7g7bCPlljkxqLc+ixR6kKfkOQUyfkLyTuC9tokwX8y0U0wfCc\nKod4Qc0CZ3Dfsp1UUQKCZENZ9W7LL962oJcvpR3Waj1zIQbVotzWvQdVaz9jQTFc\nBoNphBLANuTwSxz2vycOft/86wKBgQDH7aehns8kdYaH1QV9T295Z5QfvWsakd3r\nNACzTzgHXdxBOR2bf9jmPJkMMfHQlXCz+4ZeRA+a2KvgEFC+1EhYobOQE6ucRnVN\ncpX+3VON5C62n8q73jC0FdKjEmDDyBo52Nob8UsTcAmL5USqDKZnkD/T7q4+XLNu\nhzvSzWRVUQKBgQCun8u6gHyp7Pt464H1plp4nOk1BilJQn7xQIh2pHlUOpiGeEXq\ntbJKE9JaPgrZs6NwB+qyAJVJmXaFx20dfpPv+hasQCyIHjnCc7/p/juppPQm8dgG\n1o8aDvA2Q7NIp3oi7GUomRYt3xrOu4evYmkpruYvHXOJIIbOqL4JdofbWQKBgQC5\nJembzwpd5UjU+f2/cpT1hWqziiNp07QEYYBUjgSBLfcPn+k/XEJt1aiWlpouZHae\n90wUeEtLR2TEd9ePIeBt1DIKN20xqD5xnrAx+p2qRarNDWYeXUIVRDBxPE/If8Np\n1t0GC4tPUO5GU+gm4tgoCHpTtjI/JnI05aANNJC6QQKBgQCPL+JTQ+mHqfQVCvKi\nbjMdaIXwvZ6OmygzE3sewIKodi45w5LPDTV1MkA98luKTcVKGNJslRv7L67jqPcZ\nTBnmQ4jd+j30OUcUZSV24UCJjDg3VtIb+7JM0qcNsb3ixZTRcdVIos0qB1R/UKYV\nmK4C4yI1Gfk4Uy3aEotoEtwU8Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "theplacementcellsrcc@collegemanagement-427410.iam.gserviceaccount.com",
+  "client_id": "112720430311695231753",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/theplacementcellsrcc%40collegemanagement-427410.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

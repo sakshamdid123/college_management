@@ -1,6 +1,20 @@
 import os
 from pathlib import Path
 from decouple import config
+from django.core.exceptions import ImproperlyConfigured
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def get_env_variable(var_name):
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = f"Set the {var_name} environment variable"
+        raise ImproperlyConfigured(error_msg)
+
+GOOGLE_APPLICATION_CREDENTIALS = get_env_variable('GOOGLE_APPLICATION_CREDENTIALS')
+SHEET_ID = get_env_variable('SHEET_ID')
+RANGE_NAME = get_env_variable('RANGE_NAME')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
