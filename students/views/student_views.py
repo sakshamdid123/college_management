@@ -11,7 +11,7 @@ from students.models import Student
 from django.http import HttpResponse
 
 # Your Google Sheet ID and range
-SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'collegemanagement-427410-236632926bf5.json')
+SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'collegemanagement-427410-2c12decd0b05.json')
 SHEET_ID = '1I5-Yre2sUJq-8j2aKZkjsKxtc-9LMcdhxWvu-OzhwO8'
 RANGE_NAME = 'Sheet1!A:Z'
 
@@ -42,7 +42,7 @@ def search_suggestions(request):
 
     return JsonResponse({'suggestions': suggestions_data, 'html': html})
 
-def get_google_sheet_data():
+def get_sheet_data():
     creds = Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE,
         scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"],
@@ -57,7 +57,7 @@ def get_google_sheet_data():
     return values
 
 def dashboard_data(request):
-    data = get_google_sheet_data()
+    data = get_sheet_data()
     return JsonResponse(data, safe=False)
 
 def dashboard_view(request):
