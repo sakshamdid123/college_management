@@ -1,0 +1,84 @@
+body {
+    background: url("/static/students/images/new_background.7c03b87c0bf4.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.suggestions {
+    border: 1px solid #ccc;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.suggestion {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.suggestion:hover {
+    background-color: #f0f0f0;
+}
+
+.table-hover tbody tr:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content {
+    text-align: left;
+}
+
+.full-width-table {
+    width: 100%;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+h1:before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 50px;
+    height: 3px;
+    background-color: #007bff;
+    transform: translateX(-50%);
+    border-radius: 5px;
+}
+
+
+.custom-search-bar {
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.custom-search-bar:focus {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.custom-search-button {
+    border-radius: 25px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-search-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

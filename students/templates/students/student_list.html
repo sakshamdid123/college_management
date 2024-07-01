@@ -4,18 +4,26 @@
 
 {% block content %}
     <h1>Student List</h1>
-    <!-- Add a button to navigate to the requests page -->
-    <a href="{% url 'requests' %}">
-        <button class="btn btn-secondary mb-3">Requests</button>
-    </a>
-    <form method="get" action="{% url 'student_detail' %}" class="mb-4">
-        <div class="form-group">
-            <label for="student_id">Search by Student ID:</label>
-            <input type="text" id="student_id" name="student_id" autocomplete="off" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary custom-search-button">Search</button>
-    </form>
-    <div id="suggestions" class="suggestions"></div>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4" style="max-width: 600px; margin: auto;">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createVcfModal">
+            <i class="fa fa-id-card"></i> Create VCF
+        </button>
+        <form method="get" action="{% url 'student_detail' %}" class="form-inline" style="flex-grow: 1;">
+            <div class="form-group mx-sm-3 mb-2" style="flex-grow: 1;">
+                <label for="student_id" class="sr-only">Search by Student ID:</label>
+                <input type="text" id="student_id" name="student_id" autocomplete="off" class="form-control" placeholder="Search by Student ID" style="width: 500%;">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2 custom-search-button" style="width: 40%;">
+                <i class="fa fa-search"></i> Search
+            </button>
+        </form>
+    </div>
+</div>
+
+ <div id="suggestions" class="suggestions"></div>
     {% include 'students/student_table.html' %}
     {% include 'students/change_contact_modal.html' %}
+
 {% endblock %}

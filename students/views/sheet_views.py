@@ -7,7 +7,7 @@ import os
 
 SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'collegemanagement-427410-71b9655c0e80.json')
 SPREADSHEET_ID = '1c73XKHU1MwJTShx5rdMnkCBYdjxYFriWhBbYEZN4dLg'
-RANGE_NAME = 'Sheet1!A1:B'
+RANGE_NAME = 'Sheet1!A1:Z'
 
 def get_google_sheet_data():
     creds = Credentials.from_service_account_file(

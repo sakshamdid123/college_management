@@ -72,11 +72,11 @@ WSGI_APPLICATION = 'college_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME', default='student_database'),
+        'NAME': config('DB_NAME', default='railway'),
         'USER': config('DB_USER', default='root'),
-        'PASSWORD': config('DB_PASSWORD', default='sakshamd26'),
-        'HOST': config('DB_HOST', default='localhost'),
-        'PORT': config('DB_PORT', default='3306'),
+        'PASSWORD': config('DB_PASSWORD', default='WzDiMcypAnwwzWFqLIgfpSsmDrGtpzke'),
+        'HOST': config('DB_HOST', default='roundhouse.proxy.rlwy.net'),
+        'PORT': config('DB_PORT', default='52317'),
     }
 }
 
