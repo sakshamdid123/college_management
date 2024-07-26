@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from students.views import student_views, contact_views, sheet_views  # Import views from the students folder
+from students.views import student_views, contact_views, sheet_views, expense_entry
+from students.views.CVVettingPortalView import CVVettingPortalView,SCLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,5 +15,8 @@ urlpatterns = [
     path('dashboard/', student_views.dashboard_view, name='dashboard'),
     path('dashboard/data/', student_views.dashboard_data, name='dashboard_data'),
     path('create-vcf/', student_views.create_vcf_view, name='create-vcf'),
+    path('expense_entry/', expense_entry.expense_entry_view, name='expense_entry'),
+    path('cv-vetting-portal/', CVVettingPortalView.as_view(), name='cv_vetting_portal'),
+    path('sc-login/', SCLoginView.as_view(), name='sc_login'),  # Add this line
 ]
 

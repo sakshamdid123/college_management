@@ -1,19 +1,11 @@
 import os
 import csv
-from google.oauth2 import service_account
-from google.oauth2.service_account import Credentials
-from googleapiclient.discovery import build
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from students.models import Student
+from students.models import Student, Expense
 from django.http import HttpResponse
-
-# Your Google Sheet ID and range
-SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'collegemanagement-427410-a15b45b5e2f3.json')
-SHEET_ID = '1I5-Yre2sUJq-8j2aKZkjsKxtc-9LMcdhxWvu-OzhwO8'
-RANGE_NAME = 'Sheet1!A:Z'
 
 def student_list(request):
     students = Student.objects.all()
@@ -57,7 +49,13 @@ def get_sheet_data():
     return values
 
 def dashboard_data(request):
-    data = get_sheet_data()
+    # Query all expense data from the database
+    expenses = Expense.objects.all().values(
+        'unique_expense_id', 'sc_name', 'sc_email', 'date', 'company_name', 
+        'company_round', 'bill_number', 'bill_vendor', 'bill_amount'
+    )
+    # Convert QuerySet to a list of dictionaries
+    data = list(expenses)
     return JsonResponse(data, safe=False)
 
 def dashboard_view(request):

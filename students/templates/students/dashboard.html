@@ -6,99 +6,104 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-    body {
-        background-color: #f8f9fa;
-        font-family: 'Trebuchet MS', Arial, sans-serif;
-    font-size: 18px; /* Increase the base font size */    }
-    .sidebar {
-        width: 250px;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #343a40;
-        color: white;
-        padding: 15px;
-        box-sizing: border-box;
-    }
-    .sidebar h2 {
-        margin-top: 0;
-        font-size: 18px; /* Adjust sidebar header font size */
-    }
-    .sidebar select {
-        width: 100%;
-        margin-bottom: 20px;
-        font-size: 14px; /* Adjust sidebar select font size */
-    }
-    .dashboard-container {
-        margin-left: 270px;
-        padding: 20px;
-    }
-    .card {
-        margin: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.3s ease-in-out;
-    }
-    .card:hover {
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    .card-body {
-        padding: 15px;
-        font-size: 16px; /* Adjust card body font size */
-    }
-    .data-card {
-        flex: 1 1 calc(33% - 20px);
-        max-width: calc(33% - 20px);
-    }
-    .chart-card, .table-card {
-        flex: 1 1 calc(50% - 20px);
-        max-width: calc(50% - 20px);
-    }
-    .table-card .card-body {
-        overflow-x: auto;
-    }
-    .d-flex {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-wrap: wrap;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 0 auto;
-        text-align: center;
-        font-size: 14px; /* Adjust table font size */
-    }
-    th, td {
-        padding: 15px;
-        border: 1px solid #ddd;
-    }
-    th {
-        background-color: #f2f2f2;
-        font-size: 16px; /* Increase table header font size */
-    }
-    td {
-        background-color: #ffffff;
-    }
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-    tr:hover {
-        background-color: #f1f1f1;
-    }
-    .table-card .card-body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-</style>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-size: 18px; /* Increase the base font size */
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            color: white;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .sidebar h2 {
+            margin-top: 0;
+            font-size: 18px; /* Adjust sidebar header font size */
+        }
+        .sidebar select {
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 14px; /* Adjust sidebar select font size */
+        }
+        .dashboard-container {
+            margin-left: 270px;
+            padding: 20px;
+        }
+        .card {
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card-body {
+            padding: 15px;
+            font-size: 16px; /* Adjust card body font size */
+        }
+        .data-card {
+            flex: 1 1 calc(33% - 20px);
+            max-width: calc(33% - 20px);
+        }
+        .chart-card, .table-card {
+            flex: 1 1 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+        .table-card .card-body {
+            overflow-x: auto;
+        }
+        .d-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 14px; /* Adjust table font size */
+        }
+        th, td {
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-size: 16px; /* Increase table header font size */
+        }
+        td {
+            background-color: #ffffff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .table-card .card-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px; /* Set a fixed height for the charts */
+        }
+    </style>
 </head>
 <body>
 <div class="sidebar">
     <h2><i class="fas fa-user-circle"></i> Hello SC!</h2>
-       <div class="filter-section">
+    <div class="filter-section">
         <div>
             <label for="sc-filter"><i class="fas fa-user"></i> Select Your Name</label>
             <select id="sc-filter" class="form-select">
@@ -116,317 +121,282 @@
     </div>
 </div>
 
-    <div class="dashboard-container">
-        <div class="d-flex">
-            <div class="data-card card">
-                <div class="card-body">
-                    <h5>Number of Transactions</h5>
-                    <p id="num-transactions">0</p>
-                </div>
-            </div>
-            <div class="data-card card">
-                <div class="card-body">
-                    <h5>Total Expenses Incurred</h5>
-                    <p id="total-expenses">0</p>
-                </div>
-            </div>
-            <div class="data-card card">
-                <div class="card-body">
-                    <h5>Total Reimbursements Due</h5>
-                    <p id="total-reimbursements">0</p>
-                </div>
+<div class="dashboard-container">
+    <div class="d-flex">
+        <div class="data-card card">
+            <div class="card-body">
+                <h5>Number of Transactions</h5>
+                <p id="num-transactions">0</p>
             </div>
         </div>
-      <div class="d-flex">
-    <div class="table-card card">
-        <div class="card-body">
-            <h5>Recent Transactions</h5>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Company</th>
-                        <th>User</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody id="recent-transactions">
-                    <!-- Transaction data will be populated here -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="chart-card card">
-        <div class="card-body">
-            <h5>Expenses Over Time</h5>
-            <canvas id="expenses-over-time"></canvas>
-        </div>
-    </div>
-</div>  
-        <div class="d-flex">
-            <div class="chart-card card">
-                <div class="card-body">
-                    <h5>Expenses by Bill Vendor</h5>
-                    <canvas id="expenses-by-vendor"></canvas>
-                </div>
+        <div class="data-card card">
+            <div class="card-body">
+                <h5>Total Expenses Incurred</h5>
+                <p id="total-expenses">0</p>
             </div>
-            <div class="chart-card card">
-                <div class="card-body">
-                    <h5>Top 5 SCs by Expenses</h5>
-                    <canvas id="expenses-by-sc"></canvas>
-                </div>
+        </div>
+        <div class="data-card card">
+            <div class="card-body">
+                <h5>Total Reimbursements Due</h5>
+                <p id="total-reimbursements">0</p>
             </div>
         </div>
     </div>
+    <div class="d-flex">
+        <div class="table-card card">
+            <div class="card-body">
+                <h5>Recent Transactions</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Company</th>
+                            <th>User</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-transactions">
+                        <!-- Transaction data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="chart-card card">
+            <div class="card-body chart-container">
+                <h5>Expenses Over Time</h5>
+                <canvas id="expenses-over-time"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex">
+        <div class="chart-card card">
+            <div class="card-body chart-container">
+                <h5>Expenses by Bill Vendor</h5>
+                <canvas id="expenses-by-vendor"></canvas>
+            </div>
+        </div>
+        <div class="chart-card card">
+            <div class="card-body chart-container">
+                <h5>Top 5 SCs by Expenses</h5>
+                <canvas id="expenses-by-sc"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <script>
-        let scFilterValue = "All"; // Initialize filter value
-        let companyFilterValue = "All"; // Initialize company filter value
+<script>
+    let scFilterValue = "All"; // Initialize filter value
+    let companyFilterValue = "All"; // Initialize company filter value
 
-        async function fetchData() {
-            const response = await fetch("{% url 'dashboard_data' %}");
-            const data = await response.json();
-            return data.slice(1); // Skip header row
-        }
-
-async function createCharts() {
-    const data = await fetchData();
-
-    // Apply filters
-    const filteredData = data.filter(row => {
-        return (scFilterValue === "All" || row[1] === scFilterValue) &&
-               (companyFilterValue === "All" || row[4] === companyFilterValue);
-    });
-
-    const dates = filteredData.map(row => row[3]);
-    const companies = filteredData.map(row => row[4]);
-    const users = filteredData.map(row => row[1]);
-    const expenses = filteredData.map(row => parseFloat(row[8]));
-    const vendors = filteredData.map(row => row[7]); // Assuming you have vendor data in your dataset
-
-    const numTransactions = filteredData.length;
-    const totalExpenses = expenses.reduce((a, b) => a + b, 0);
-    const totalReimbursements = filteredData.filter(row => row[9] === "Due").reduce((a, b) => a + parseFloat(b[8]), 0); // Assuming column 9 indicates reimbursement status
-
-    document.getElementById('num-transactions').textContent = numTransactions;
-    document.getElementById('total-expenses').textContent = totalExpenses.toFixed(2);
-    document.getElementById('total-reimbursements').textContent = totalReimbursements.toFixed(2);
-
-    const expensesOverTimeCtx = document.getElementById('expenses-over-time').getContext('2d');
-    const expensesByVendorCtx = document.getElementById('expenses-by-vendor').getContext('2d');
-    const expensesBySCCtx = document.getElementById('expenses-by-sc').getContext('2d');
-
-    // Clear previous charts
-    Chart.getChart("expenses-over-time")?.destroy();
-    Chart.getChart("expenses-by-vendor")?.destroy();
-    Chart.getChart("expenses-by-sc")?.destroy();
-
-    new Chart(expensesOverTimeCtx, {
-        type: 'line',
-        data: {
-            labels: dates,
-            datasets: [{
-                label: 'Expenses Over Time',
-                data: expenses,
-                backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                borderColor: 'rgba(153, 102, 255, 1)',
-                borderWidth: 1,
-                grid: {
-                    display: false
-                }
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        display: false
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    }
-                }
-            }
-        }
-    });
-
-    const expensesByVendorData = vendors.reduce((acc, vendor, index) => {
-        acc[vendor] = (acc[vendor] || 0) + expenses[index];
-        return acc;
-    }, {});
-
-    new Chart(expensesByVendorCtx, {
-        type: 'bar',
-        data: {
-            labels: Object.keys(expensesByVendorData),
-            datasets: [{
-                label: 'Expenses by Vendor',
-                data: Object.values(expensesByVendorData),
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1,
-                grid: {
-                    display: false
-                }
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        display: false
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    }
-                }
-            }
-        }
-    });
-
-    const scExpenseData = {};
-    data.forEach(row => {
-        const scName = row[1];
-        const expense = parseFloat(row[8]);
-        if (!scExpenseData[scName]) {
-            scExpenseData[scName] = 0;
-        }
-        scExpenseData[scName] += expense;
-    });
-
-    // Identify top 5 SCs
-    let topSCs = Object.entries(scExpenseData).sort((a, b) => b[1] - a[1]).slice(0, 5);
-    const topSCNames = topSCs.map(entry => entry[0]);
-    const topSCExpenses = topSCs.map(entry => entry[1]);
-
-    // Ensure the selected SC is included if not already in top 5
-    if (scFilterValue !== "All" && !topSCNames.includes(scFilterValue)) {
-        const selectedSCExpense = scExpenseData[scFilterValue] || 0;
-        topSCs.push([scFilterValue, selectedSCExpense]);
-        topSCs = topSCs.sort((a, b) => b[1] - a[1]).slice(0, 5);
+    async function fetchData() {
+        const response = await fetch("{% url 'dashboard_data' %}");
+        const data = await response.json();
+        return data; // No need to skip header row as data comes from database
     }
 
-    new Chart(expensesBySCCtx, {
-        type: 'bar',
-        data: {
-            labels: topSCs.map(entry => entry[0]),
-            datasets: [{
-                label: 'Expenses by SC',
-                data: topSCs.map(entry => entry[1]),
-                backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                borderColor: 'rgba(255, 206, 86, 1)',
-                borderWidth: 1,
-                grid: {
-                    display: false
-                }
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        display: false
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
+    async function createCharts() {
+        const data = await fetchData();
+
+        // Apply filters
+        const filteredData = data.filter(row => {
+            return (scFilterValue === "All" || row.sc_name === scFilterValue) &&
+                   (companyFilterValue === "All" || row.company_name === companyFilterValue);
+        });
+
+        const dates = filteredData.map(row => row.date);
+        const companies = filteredData.map(row => row.company_name);
+        const users = filteredData.map(row => row.sc_name);
+        const expenses = filteredData.map(row => parseFloat(row.bill_amount));
+        const vendors = filteredData.map(row => row.bill_vendor); // Assuming you have vendor data in your dataset
+
+        const numTransactions = filteredData.length;
+        const totalExpenses = expenses.reduce((a, b) => a + b, 0);
+        const totalReimbursements = filteredData.filter(row => row.reimbursement_status === "Due").reduce((a, b) => a + parseFloat(b.bill_amount), 0); // Assuming there is a reimbursement status
+
+        document.getElementById('num-transactions').textContent = numTransactions;
+        document.getElementById('total-expenses').textContent = totalExpenses.toFixed(2);
+        document.getElementById('total-reimbursements').textContent = totalReimbursements.toFixed(2);
+
+        const expensesOverTimeCtx = document.getElementById('expenses-over-time').getContext('2d');
+        const expensesByVendorCtx = document.getElementById('expenses-by-vendor').getContext('2d');
+        const expensesBySCCtx = document.getElementById('expenses-by-sc').getContext('2d');
+
+        // Clear previous charts
+        Chart.getChart("expenses-over-time")?.destroy();
+        Chart.getChart("expenses-by-vendor")?.destroy();
+        Chart.getChart("expenses-by-sc")?.destroy();
+
+        new Chart(expensesOverTimeCtx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Expenses Over Time',
+                    data: expenses,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Amount'
+                        }
                     }
                 }
             }
-        }
-    });
+        });
 
-    // Populate recent transactions table
-    const recentTransactionsTable = document.getElementById('recent-transactions');
-    recentTransactionsTable.innerHTML = ''; // Clear previous data
+        new Chart(expensesByVendorCtx, {
+            type: 'bar',
+            data: {
+                labels: vendors,
+                datasets: [{
+                    label: 'Expenses by Vendor',
+                    data: expenses,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Vendor'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Amount'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Get the top 5 SCs by total expenses
+        const scExpenses = {};
+        filteredData.forEach(row => {
+            if (scExpenses[row.sc_name]) {
+                scExpenses[row.sc_name] += parseFloat(row.bill_amount);
+            } else {
+                scExpenses[row.sc_name] = parseFloat(row.bill_amount);
+            }
+        });
+        const top5SCs = Object.entries(scExpenses).sort((a, b) => b[1] - a[1]).slice(0, 5);
+        if (!top5SCs.some(sc => sc[0] === scFilterValue) && scFilterValue !== "All") {
+            top5SCs.push([scFilterValue, scExpenses[scFilterValue]]);
+        }
+        const top5SCNames = top5SCs.map(sc => sc[0]);
+        const top5SCValues = top5SCs.map(sc => sc[1]);
+
+        new Chart(expensesBySCCtx, {
+            type: 'bar',
+            data: {
+                labels: top5SCNames,
+                datasets: [{
+                    label: 'Top 5 SCs by Expenses',
+                    data: top5SCValues,
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'SC Name'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Amount'
+                        }
+                    }
+                }
+            }
+        });
+
+// Populate the recent transactions table
+const recentTransactionsTable = document.getElementById('recent-transactions');
+recentTransactionsTable.innerHTML = '';
+
 filteredData
-    .map((row, index) => ({ row, index })) // Keep original index
-    .sort((a, b) => {
-        const dateA = new Date(a.row[3]);
-        const dateB = new Date(b.row[3]);
-        return dateB - dateA || b.index - a.index; // Sort by date descending, then by original index descending
-    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 5)
-    .forEach(entry => {
+    .forEach(row => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td>${entry.row[3]}</td>
-            <td>${entry.row[4]}</td>
-            <td>${entry.row[1]}</td>
-            <td>${entry.row[8]}</td>
+            <td>${row.date}</td>
+            <td>${row.company_name}</td>
+            <td>${row.sc_name}</td>
+            <td>${parseFloat(row.bill_amount).toFixed(2)}</td>
         `;
         recentTransactionsTable.appendChild(tr);
     });
 }
-        function populateFilters() {
-            fetchData().then(data => {
-                const scNames = [...new Set(data.map(row => row[1]))];
-                const companyNames = [...new Set(data.map(row => row[4]))];
 
-                const scFilter = document.getElementById('sc-filter');
-                scFilter.innerHTML = '<option value="All">All</option>';
-                scNames.forEach(name => {
-                    const option = document.createElement('option');
-                    option.value = name;
-                    option.textContent = name;
-                    scFilter.appendChild(option);
-                });
+    document.getElementById('sc-filter').addEventListener('change', (event) => {
+        scFilterValue = event.target.value;
+        createCharts();
+    });
 
-                const companyFilter = document.getElementById('company-filter');
-                companyFilter.innerHTML = '<option value="All">All</option>';
-                companyNames.forEach(name => {
-                    const option = document.createElement('option');
-                    option.value = name;
-                    option.textContent = name;
-                    companyFilter.appendChild(option);
-                });
-            });
-        }
+    document.getElementById('company-filter').addEventListener('change', (event) => {
+        companyFilterValue = event.target.value;
+        createCharts();
+    });
 
-document.getElementById('sc-filter').addEventListener('change', event => {
-    scFilterValue = event.target.value;
-    if (scFilterValue === "All") {
-        companyFilterValue = "All";
-        document.getElementById('company-filter').value = "All";
-    }
-    populateCompanyFilter();
-    createCharts();
-});
+    // Fetch SC names and Company names for the filters
+    async function fetchFilterOptions() {
+        const data = await fetchData();
+        const scNames = Array.from(new Set(data.map(row => row.sc_name)));
+        const companyNames = Array.from(new Set(data.map(row => row.company_name)));
 
+        const scFilter = document.getElementById('sc-filter');
+        const companyFilter = document.getElementById('company-filter');
 
-        document.getElementById('company-filter').addEventListener('change', event => {
-            companyFilterValue = event.target.value;
-            createCharts();
+        scFilter.innerHTML = '<option value="All">All</option>';
+        companyFilter.innerHTML = '<option value="All">All</option>';
+
+        scNames.forEach(name => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            scFilter.appendChild(option);
         });
 
-        function populateCompanyFilter() {
-            fetchData().then(data => {
-                const filteredData = data.filter(row => scFilterValue === "All" || row[1] === scFilterValue);
-                const companyNames = [...new Set(filteredData.map(row => row[4]))];
+        companyNames.forEach(name => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            companyFilter.appendChild(option);
+        });
+    }
 
-                const companyFilter = document.getElementById('company-filter');
-                companyFilter.innerHTML = '<option value="All">All</option>';
-                companyNames.forEach(name => {
-                    const option = document.createElement('option');
-                    option.value = name;
-                    option.textContent = name;
-                    companyFilter.appendChild(option);
-                });
-            });
-        }
-
-        populateFilters();
-        createCharts();
-        setInterval(createCharts, 20000); // Refresh charts every 20 seconds
-    </script>
+    fetchFilterOptions();
+    createCharts();
+</script>
 </body>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:600&display=swap');
