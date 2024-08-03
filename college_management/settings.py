@@ -85,19 +85,19 @@ ASGI_APPLICATION = 'college_management.asgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME', default='railway'),
-        'USER': config('DB_USER', default='root'),
-        'PASSWORD': config('DB_PASSWORD', default='WzDiMcypAnwwzWFqLIgfpSsmDrGtpzke'),
-        'HOST': config('DB_HOST', default='roundhouse.proxy.rlwy.net'),
-        'PORT': config('DB_PORT', default='52317'),
+        'NAME': config('DB_NAME', default='student_database'),
+        'USER': config('DB_USER', default='admin'),
+        'PASSWORD': config('DB_PASSWORD', default='sakshamd26'),
+        'HOST': config('DB_HOST', default='database-1.c70gm0i46fkl.us-east-2.rds.amazonaws.com'),
+        'PORT': config('DB_PORT', default='3306'),
     },
     'vetting_db': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': config('VETTING_DB_NAME', default='vetting_2425'),
-        'USER': config('VETTING_DB_USER', default='root'),
-        'PASSWORD': config('VETTING_DB_PASSWORD', default='WzDiMcypAnwwzWFqLIgfpSsmDrGtpzke'),
-        'HOST': config('VETTING_DB_HOST', default='roundhouse.proxy.rlwy.net'),
-        'PORT': config('VETTING_DB_PORT', default='52317'),
+        'USER': config('VETTING_DB_USER', default='admin'),
+        'PASSWORD': config('VETTING_DB_PASSWORD', default='sakshamd26'),
+        'HOST': config('VETTING_DB_HOST', default='database-1.c70gm0i46fkl.us-east-2.rds.amazonaws.com'),
+        'PORT': config('VETTING_DB_PORT', default='3306'),
     }
 }
 
