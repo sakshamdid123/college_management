@@ -44,7 +44,11 @@ class CVVettingPortalView(View):
             {
                 'roll_number': sd.roll_number,
                 'name': sd.name,
-                'cv': sd.cv,
+                'variant_a': sd.variant_a,
+                'variant_b': sd.variant_b,
+                'variant_c': sd.variant_c,
+                'proofs': sd.proofs,
+                'repository': sd.repository,
                 'phone_number': sd.phone_number,
                 'email_address': sd.email_address,
                 'date': vs.date,

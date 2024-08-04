@@ -45,7 +45,12 @@ class StudentData(models.Model):
     name = models.CharField(max_length=100, db_column='Name')
     phone_number = models.CharField(max_length=10, db_column='Phone Number')
     email_address = models.CharField(max_length=100, db_column='Email Address')
-    cv = models.TextField(db_column='CV')
+    variant_a = models.TextField(db_column='Variant A')
+    variant_b = models.TextField(db_column='Variant B')
+    variant_c = models.TextField(db_column='Variant C')
+    proofs = models.TextField(db_column='Proofs')
+    repository = models.TextField(db_column='Repository')
+    
 
     class Meta:
         db_table = 'student_data'
@@ -53,19 +58,6 @@ class StudentData(models.Model):
 
     def __str__(self):
         return self.name
-
-class MessageID(models.Model):
-    id = models.CharField(max_length=10, db_column='ID', primary_key=True)  # Adding this line to define a primary key
-    recipient = models.CharField(max_length=100, db_column='Recipient')
-    message_id = models.CharField(max_length=255,  db_column='Message ID' )
-    
-    def __str__(self):
-        return f"{self.recipient} - {self.message_id}"
-
-    class Meta:
-        db_table = 'message_id'
-        app_label = 'vetting_2425'
-
 
 class VettingSlot(models.Model):
     DISCREPANCY = 'Discrepancy'
