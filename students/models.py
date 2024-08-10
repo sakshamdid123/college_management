@@ -5,51 +5,16 @@ from django.utils.html import strip_tags
 from django.conf import settings
 from datetime import datetime, timedelta
 
-
-class Student(models.Model):
-    student_id = models.TextField(db_column='Student ID', primary_key=True)
-    student_name = models.TextField(db_column='Student Name', blank=True, null=True)
-    course = models.TextField(db_column='Course', blank=True, null=True)
-    year_sem = models.IntegerField(db_column='Year/Sem', blank=True, null=True)
-    category = models.TextField(db_column='Category', blank=True, null=True)
-    gender = models.TextField(db_column='Gender', blank=True, null=True)
-    college_email = models.TextField(db_column='College Email', blank=True, null=True)
-    personal_email = models.TextField(db_column='Personal Email', blank=True, null=True)
-    student_mobile_number = models.BigIntegerField(db_column='Student Mobile Number', blank=True, null=True)
-    admission_criterion = models.TextField(db_column='Admission Criterion', blank=True, null=True)
-    cuet_score = models.FloatField(db_column='CUET Score', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = '2026_bcom'
-
-    def __str__(self):
-        return self.student_name
-
-class Expense(models.Model):
-    unique_expense_id = models.CharField(max_length=255)
-    sc_name = models.CharField(max_length=255)
-    sc_email = models.EmailField()
-    date = models.DateField()
-    company_name = models.CharField(max_length=255)
-    company_round = models.CharField(max_length=255)
-    bill_number = models.CharField(max_length=255)
-    bill_vendor = models.CharField(max_length=255)
-    bill_amount = models.DecimalField(max_digits=10, decimal_places=2)
-
-    def __str__(self):
-        return f"{self.sc_name} - {self.bill_amount}"
-
 class StudentData(models.Model):
     roll_number = models.CharField(max_length=10, primary_key=True, db_column='Roll Number')
-    name = models.CharField(max_length=100, db_column='Name')
+    name = models.CharField(max_length=100, db_column='name')
     phone_number = models.CharField(max_length=10, db_column='Phone Number')
     email_address = models.CharField(max_length=100, db_column='Email Address')
     variant_a = models.TextField(db_column='Variant A')
     variant_b = models.TextField(db_column='Variant B')
     variant_c = models.TextField(db_column='Variant C')
-    proofs = models.TextField(db_column='Proofs')
-    repository = models.TextField(db_column='Repository')
+    proofs = models.TextField(db_column='proofs')
+    repository = models.TextField(db_column='repository')
     
 
     class Meta:
@@ -82,7 +47,7 @@ class VettingSlot(models.Model):
         (NO, 'No'),
     ]
     roll_number = models.ForeignKey(StudentData, on_delete=models.CASCADE, db_column='Roll Number', primary_key=True)
-    date = models.DateField(db_column='Date')
+    date = models.DateField(db_column='date')
     sc_name = models.CharField(max_length=100, db_column='SC Name')
     fns_buddy = models.CharField(max_length=100, db_column='FNS Buddy')
     vetting_status = models.CharField(
@@ -99,7 +64,7 @@ class VettingSlot(models.Model):
     discrepancy_slot_date = models.DateField(db_column='Discrepancy Slot Date')
     discrepancy_slot_time = models.TimeField(db_column='Discrepancy Slot Time')
     link = models.TextField(db_column='Email Link')
-    discrepancies = models.TextField(null=True, db_column='Discrepancies')
+    discrepancies = models.TextField(null=True, db_column='discrepancies')
 
     class Meta:
         db_table = 'vetting_slots'
@@ -110,9 +75,9 @@ class VettingSlot(models.Model):
 
 class SCLoginCredentials(models.Model):
     sc_name = models.CharField(max_length=100, db_column='SC Name', primary_key=True)
-    email = models.CharField(max_length=100, db_column='Email')
-    username = models.CharField(max_length=100, db_column='User Name', primary_key=True)
-    password = models.CharField(max_length=100, db_column='Password', primary_key=True)
+    email = models.CharField(max_length=100, db_column='email')
+    username = models.CharField(max_length=100, db_column='User Name')
+    password = models.CharField(max_length=100, db_column='password')
 
     class Meta:
         db_table = 'sc_login_credentials'

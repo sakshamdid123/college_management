@@ -84,21 +84,27 @@ ASGI_APPLICATION = 'college_management.asgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME', default='student_database'),
-        'USER': config('DB_USER', default='admin'),
-        'PASSWORD': config('DB_PASSWORD', default='sakshamd26'),
-        'HOST': config('DB_HOST', default='database-1.c70gm0i46fkl.us-east-2.rds.amazonaws.com'),
-        'PORT': config('DB_PORT', default='3306'),
+        'ENGINE': 'django_cockroachdb',
+        'NAME': config('VETTING_DB_NAME', default='vetting2024'),
+        'USER': config('VETTING_DB_USER', default='saksham'),
+        'PASSWORD': config('VETTING_DB_PASSWORD', default='iOtY90r5ObTEArqn6u4rTA'),
+        'HOST': config('VETTING_DB_HOST', default='cvvettingportal-5744.7s5.aws-ap-south-1.cockroachlabs.cloud'),
+        'PORT': config('VETTING_DB_PORT', default='26257'),
+        'OPTIONS': {
+            'options': '-c search_path=vetting_2425,public'
     },
+},
     'vetting_db': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('VETTING_DB_NAME', default='vetting_2425'),
-        'USER': config('VETTING_DB_USER', default='admin'),
-        'PASSWORD': config('VETTING_DB_PASSWORD', default='sakshamd26'),
-        'HOST': config('VETTING_DB_HOST', default='database-1.c70gm0i46fkl.us-east-2.rds.amazonaws.com'),
-        'PORT': config('VETTING_DB_PORT', default='3306'),
-    }
+        'ENGINE': 'django_cockroachdb',
+        'NAME': config('VETTING_DB_NAME', default='vetting2024'),
+        'USER': config('VETTING_DB_USER', default='saksham'),
+        'PASSWORD': config('VETTING_DB_PASSWORD', default='iOtY90r5ObTEArqn6u4rTA'),
+        'HOST': config('VETTING_DB_HOST', default='cvvettingportal-5744.7s5.aws-ap-south-1.cockroachlabs.cloud'),
+        'PORT': config('VETTING_DB_PORT', default='26257'),
+        'OPTIONS': {
+            'options': '-c search_path=vetting_2425,public'
+    },
+}
 }
 
 DATABASE_ROUTERS = ['college_management.routers.Vetting2425Router']
