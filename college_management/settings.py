@@ -84,7 +84,7 @@ ASGI_APPLICATION = 'college_management.asgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django_cockroachdb',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('VETTING_DB_NAME', default='vetting2024'),
         'USER': config('VETTING_DB_USER', default='saksham'),
         'PASSWORD': config('VETTING_DB_PASSWORD', default='iOtY90r5ObTEArqn6u4rTA'),
@@ -95,7 +95,7 @@ DATABASES = {
     },
 },
     'vetting_db': {
-        'ENGINE': 'django_cockroachdb',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('VETTING_DB_NAME', default='vetting2024'),
         'USER': config('VETTING_DB_USER', default='saksham'),
         'PASSWORD': config('VETTING_DB_PASSWORD', default='iOtY90r5ObTEArqn6u4rTA'),
