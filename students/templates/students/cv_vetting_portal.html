@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
@@ -9,359 +10,21 @@
     <title>CV Vetting 2024-25 Portal</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Aptos', sans-serif;
-    font-size: 14px;
-        }
-        .container {
-            margin-top: 50px;
-        }
-
-.title {
-    font-size: 2em;
-    font-weight: bold;
-    margin: 0;
-}
-
-.title-year {
-    font-size: 1.5em;
-    color: #007bff;
-}
-
-        .due-indicator {
-            position:absolute;
-    width: 30px;
-    height: 30px;
-    margin-left: 5px;
-    vertical-align: middle;
-        }
-
-
-.vetting-icons-container {
-    margin-top: 5px;
-}
-
-.revetting-icon {
-    position:absolute;
-    width: 30px;
-    height: 30px;
-    margin-left: 5px;
-    vertical-align: middle;
-}
-.cv-variant {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    margin: 2px;
-    text-align: center;
-    line-height: 25px; /* Adjusted line-height to match the height */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    color: black; /* Default color for no data */
-    background-color: transparent; /* Remove background color */
-}
-
-.cv-variant.has-data a {
-    color: green; /* Color for variant with data */
-}
-
-.cv-variant.no-data a {
-    color: black; /* Color for variant without data */
-}
-
-
-
-/* Existing CSS */
-.slots-header {
-    font-weight: bold;
-    margin: 20px 0; /* Reduce the margin */
-    text-align: left; /* Align to the left */
-    color: #343a40; /* Existing color */
-    border-bottom: 2px solid #007bff; /* Add a bottom border for distinction */
-    padding-bottom: 10px; /* Add padding to separate from the table */
-    margin-top: 10px; /* Reduce top margin */
-    margin-left: 0; /* Align to the top left of the table */
-    font-size: 1.5em; /* Slightly smaller font size */
-}
-
-
-
-.table-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border:none;
-}
-
-.table-header h2 {
-    margin: 0;
-    border:none;
-}
-
-.date-picker-icon {
-    font-size: 1.5em;
-    cursor: pointer;
-    color: #007bff;
-}
-
-
-.date-picker-icon:hover {
-    color: #0056b3;xx
-}
-
-.table-container {
-    background: white;
-    border:none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.table {
-    margin-bottom: 0;
-    width: 100%;
-    border-collapse: collapse;
-    border:none;
-}
-
-    .table th,
-    .table td {
-        border: 1px solid #dee2e6; /* Light grey borders */
-        vertical-align: middle !important;
-        text-align: center;
-        padding: 8px;
-    }
-
-    .table thead {
-        color: #000; /* Black color */
-        font-weight: bold; /* Bold text */
-    }
-
-
-
-.table tbody tr {
-    transition: background-color 0.2s;
-    border:none;
-}
-
-.table tbody tr:hover {
-    background-color: #f1f3f5;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    z-index: 1050;
-    min-width: 10rem;
-    padding: .5rem 0;
-    margin: .125rem 0 0;
-    font-size: 1rem;
-    color: #212529;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, .15);
-    border-radius: .25rem;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .175);
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 10px 20px;
-    color: #333;
-    cursor: pointer;
-}
-
-.dropdown-menu a:hover {
-    background-color: #f1f3f5;
-}
-
-.dropdown-item-red {
-    color: red;
-}
-
-.dropdown-item-black {
-    color: black;
-}
-
-.dropdown-item-yellow {
-    color: #FFD700;
-}
-
-.dropdown-item-green {
-    color: green;
-}
-
-.dropdown-item-pink {
-    color: pink;
-}
-
-.fa-file-alt {
-    color: #007bff;
-    font-size: 1.5em;
-}
-
-.fa-file-alt:hover {
-    color: #0056b3;
-}
-
-.vetting-status-container {
-    padding: 5px 10px;
-    width:140px;
-    border-radius: 5px;
-    display: inline-block;
-    color: #fff;
-    position: relative;
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.vetting-status-discrepancy {
-    background-color: red;
-}
-
-.vetting-status-cancelled {
-    background-color: black;
-}
-
-.vetting-status-revetting {
-    background-color: #FFD700;
-    color: black;
-}
-
-.vetting-status-vetted {
-    background-color: green;
-}
-
-.vetting-status-rescheduled {
-    background-color: #e0218a;
-}
-
-.vetting-status-pending {
-    background-color: #FFA700;
-}
-
-.vetting-status-pending:hover {
-    background-color: #B44A33; /* Slightly darker yellow on hover */
-}
-
-.vetting-status-discrepancy:hover {
-    background-color: darkred; /* Slightly darker red on hover */
-}
-
-.vetting-status-cancelled:hover {
-    background-color: #bbbbbb; /* Slightly lighter black on hover */
-}
-
-.vetting-status-revetting:hover {
-    background-color: #FFF1A9; /* Slightly darker yellow on hover */
-}
-
-.vetting-status-vetted:hover {
-    background-color: #C7EA46; /* Slightly darker green on hover */
-}
-
-.vetting-status-rescheduled:hover {
-    background-color: pink; /* Slightly darker pink on hover */
-}
-
-
-.dropdown-menu.show {
-    display: block;
-}
-
-.contact-icon, .proof-icon, .repository-icon {
-    font-size: 20px; /* Match size with A, B, C icons */
-}
-
-.contact-icon {
-    color: #28a745; /* Green color */
-    cursor: pointer;
-}
-
-.proof-icon {
-    color: #17a2b8; /* Blue color */
-    cursor: pointer;
-}
-
-.repository-icon {
-    color: #ffc107; /* Yellow color */
-    cursor: pointer;
-}
-
-.modal-content {
-    background-color: #343a40;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    color: white;
-}
-.modal-header {
-    border-bottom: none;
-}
-.modal-header .close {
-    color: white;
-}
-.modal-footer {
-    border-top: none;
-}
-
-.copy-icon {
-    cursor: pointer;
-    color: #007bff;
-    margin-left: 10px;
-}
-
-.copy-icon:hover {
-    color: #0056b3;
-}
-
-.modal-body h5 {
-    margin-bottom: 10px;
-}
-
-.details-container {
-    background-color: #495057;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin-top: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size: 0.9em;
-    color: #ffffff;
-}
-
-.input-tooltip-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    color: #6c757d;
-    cursor: pointer;
-}
-
-.input-tooltip-icon:hover {
-    color: #adb5bd;
-}
-
-    </style>
+    <link rel="stylesheet" href="{% static 'students/css/cvvettingportal.css' %}">
 </head>
 
 <body>
-<div class="container">
-    <div class="title-container text-center mb-4">
-        <h2 class="title">CV Vetting <span class="title-year">2024-25</span> Portal</h2>
-    </div>
-<div class="table-header">
-    <h4 class="slots-header">Slots for Today</h4>
-        <i id="datePickerIcon" class="fas fa-calendar-alt date-picker-icon" data-toggle="tooltip" data-placement="top" title="Select a date to filter slots"></i>
-    </div>
+    <div class="container">
+        <div class="title-container text-center mb-4">
+            <h2 class="title">CV Vetting <span class="title-year">2024-25</span> Portal</h2>
+        </div>
+        <div class="table-header">
+            <h4 class="slots-header">Slots for Today</h4>
+            <i id="datePickerIcon" class="fas fa-calendar-alt date-picker-icon" data-toggle="tooltip" data-placement="top" title="Select a date to filter slots"></i>
+        </div>
 
         <table class="table table-bordered">
             <thead>
@@ -376,335 +39,256 @@
                 </tr>
             </thead>
             <tbody>
-    {% for item in data %}
-    <tr class="row-revetting-{{ item.revetting_status|lower }}">
-        <td>{{ item.roll_number }}</td>
-        <td>{{ item.name }}</td>
-                <td>
-                    <div class="cv-variants">
-                        <span class="cv-variant {% if item.variant_a %}has-data{% else %}no-data{% endif %}">
-                            <a href="{{ item.variant_a }}" target="_blank">A</a>
-                        </span>
-                        <span class="cv-variant {% if item.variant_b %}has-data{% else %}no-data{% endif %}">
-                            <a href="{{ item.variant_b }}" target="_blank">B</a>
-                        </span>
-                        <span class="cv-variant {% if item.variant_c %}has-data{% else %}no-data{% endif %}">
-                            <a href="{{ item.variant_c }}" target="_blank">C</a>
-                        </span>
-                    </div>
-                </td>
-<td>
-    <i class="fas fa-phone contact-icon" onclick="showContactDetails('{{ item.phone_number }}', '{{ item.email_address }}')" data-toggle="tooltip" title="Contact Details"></i>
-</td>
-<td>
-    <a href="{{ item.proofs }}" class="proof-icon" title="Proofs Drive Link" target="_blank"><i class="fas fa-clipboard"></i></a>
-</td>
-<td>
-    <a href="{{ item.repository }}" class="repository-icon" title="Repository Document" target="_blank"><i class="fas fa-folder-open"></i></a>
-</td>
-        <td>
-            <div class="dropdown">
-                <span class="vetting-status-container vetting-status-{{ item.vetting_status|lower }}" onclick="toggleDropdown(this)">
-                    {{ item.vetting_status }}
-                </span>
-                    {% if item.vetting_status == 'Discrepancy' %}
-                    {% if item.is_due %}
-    <img src="{% static 'students/images/discrepancy_deadline.gif' %}" class="due-indicator" onclick="showModal('{{ item.roll_number }}')">
-                    {% endif %}
-                    {% endif %}
-             {% if item.vetting_status == 'Revetting' %}
-             {% if item.revetting_status == 'Yes' %}
-             <img src="{% static 'students/images/tick.gif' %}" class="revetting-icon">
-             {% elif item.revetting_status == 'No' %}
-             <img src="{% static 'students/images/cross.gif' %}" class="revetting-icon">
-             {% endif %}
-             {% endif %}
-                <div class="dropdown-menu">
-                    {% if item.vetting_status != 'Discrepancy' %}
-                    <a class="dropdown-item dropdown-item-red" onclick="updateVettingStatus('{{ item.roll_number }}', 'Discrepancy')">Discrepancy</a>
-                    {% endif %}
-                    {% if item.vetting_status != 'Rescheduled' %}
-                    <a class="dropdown-item dropdown-item-pink" onclick="updateVettingStatus('{{ item.roll_number }}', 'Rescheduled')">Rescheduled</a>
-                    {% endif %}
-                    {% if item.vetting_status != 'Revetting' %}
-                    <a class="dropdown-item dropdown-item-yellow" onclick="updateVettingStatus('{{ item.roll_number }}', 'Revetting')">Revetting</a>
-                    {% endif %}
-                    {% if item.vetting_status != 'Cancelled' %}
-                    <a class="dropdown-item dropdown-item-black" onclick="updateVettingStatus('{{ item.roll_number }}', 'Cancelled')">Cancelled</a>
-                    {% endif %}
-                    {% if item.vetting_status != 'Vetted' %}
-                    <a class="dropdown-item dropdown-item-green" onclick="updateVettingStatus('{{ item.roll_number }}', 'Vetted')">Vetted</a>
-                    {% endif %}
-                </div>
-            </div>
-            </td>
-        </td>
-    </tr>
-    {% endfor %}
-</tbody>
-
+                {% for item in data %}
+                <tr class="row-revetting-{{ item.revetting_status|lower }}">
+                    <td>{{ item.roll_number }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>
+                        <div class="cv-variants">
+                            <span class="cv-variant {% if item.variant_a %}has-data{% else %}no-data{% endif %}">
+                                <a href="{{ item.variant_a }}" target="_blank">A</a>
+                            </span>
+                            <span class="cv-variant {% if item.variant_b %}has-data{% else %}no-data{% endif %}">
+                                <a href="{{ item.variant_b }}" target="_blank">B</a>
+                            </span>
+                            <span class="cv-variant {% if item.variant_c %}has-data{% else %}no-data{% endif %}">
+                                <a href="{{ item.variant_c }}" target="_blank">C</a>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <i class="fas fa-phone contact-icon" onclick="showContactDetails('{{ item.phone_number }}', '{{ item.email_address }}')" data-toggle="tooltip" title="Contact Details"></i>
+                    </td>
+                    <td>
+                        <a href="{{ item.proofs }}" class="proof-icon" title="Proofs Drive Link" target="_blank">
+                            <i class="fas fa-clipboard"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ item.repository }}" class="repository-icon" title="Repository Document" target="_blank">
+                            <i class="fas fa-folder-open"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <span class="vetting-status-container vetting-status-{{ item.vetting_status|lower }}" onclick="toggleDropdown(this)">
+                                {{ item.vetting_status }}
+                            </span>
+                            {% if item.vetting_status == 'Discrepancy' %}
+                            {% if item.is_due %}
+                            <img src="{% static 'students/images/discrepancy_deadline.gif' %}" class="due-indicator" onclick="showModal('{{ item.roll_number }}')">
+                            {% endif %}
+                            {% endif %}
+                            {% if item.vetting_status == 'Revetting' %}
+                            {% if item.revetting_status == 'Yes' %}
+                            <img src="{% static 'students/images/tick.gif' %}" class="revetting-icon">
+                            {% elif item.revetting_status == 'No' %}
+                            <img src="{% static 'students/images/cross.gif' %}" class="revetting-icon">
+                            {% endif %}
+                            {% endif %}
+                            <div class="dropdown-menu">
+                                {% if item.vetting_status != 'Discrepancy' %}
+                                <a class="dropdown-item dropdown-item-red" onclick="updateVettingStatus('{{ item.roll_number }}', 'Discrepancy')">Discrepancy</a>
+                                {% endif %}
+                                {% if item.vetting_status != 'Rescheduled' %}
+                                <a class="dropdown-item dropdown-item-pink" onclick="updateVettingStatus('{{ item.roll_number }}', 'Rescheduled')">Rescheduled</a>
+                                {% endif %}
+                                {% if item.vetting_status != 'Revetting' %}
+                                <a class="dropdown-item dropdown-item-yellow" onclick="updateVettingStatus('{{ item.roll_number }}', 'Revetting')">Revetting</a>
+                                {% endif %}
+                                {% if item.vetting_status != 'Cancelled' %}
+                                <a class="dropdown-item dropdown-item-black" onclick="updateVettingStatus('{{ item.roll_number }}', 'Cancelled')">Cancelled</a>
+                                {% endif %}
+                                {% if item.vetting_status != 'Vetted' %}
+                                <a class="dropdown-item dropdown-item-green" onclick="updateVettingStatus('{{ item.roll_number }}', 'Vetted')">Vetted</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </td>
+                    <td class="reset-icon-column no-border">
+                        <i class="fas fa-redo-alt reset-icon" data-toggle="tooltip" title="Reset Slot" data-index="0"></i>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
 
-<!-- Contact Details Modal -->
-<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="contactModalLabel">Contact Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h5>Phone Number:</h5>
-                <div id="contactPhone" class="details-container"></div>
-                <i class="fas fa-copy copy-icon" onclick="copyToClipboard('contactPhone')" data-toggle="tooltip" data-placement="top" title="Copied!"></i>
-                <h5>Email Address:</h5>
-                <div id="contactEmail" class="details-container"></div>
-                <i class="fas fa-copy copy-icon" onclick="copyToClipboard('contactEmail')" data-toggle="tooltip" data-placement="top" title="Copied!"></i>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Discrepancy Modal -->
-<div class="modal fade" id="discrepancyModal" tabindex="-1" role="dialog" aria-labelledby="discrepancyModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="discrepancyModalLabel">Discrepancy Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="discrepancyForm">
-                    <div class="form-group">
-                        <label for="discrepancyDate">Discrepancy Slot Date</label>
-                        <input type="text" class="form-control" id="discrepancyDate" placeholder="Select a date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="discrepancyTime">Discrepancy Slot Time</label>
-                        <input type="text" class="form-control" id="discrepancyTime" placeholder="Select a time" required>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="saveDiscrepancyDetails()">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
+    <!-- Modals -->
+    {% include 'students/modals/contact_modal.html' %}
+    {% include 'students/modals/discrepancy_modal.html' %}
 
 
+<!-- Include jQuery and Bootstrap JS for modal functionality -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="{% static 'students/js/cvvettingportal.js' %}"></script>
 
-    <!-- Include jQuery and Bootstrap JS for modal functionality -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const resetIcons = document.querySelectorAll('.reset-icon');
 
+        resetIcons.forEach(icon => {
+            icon.addEventListener('click', function () {
+                const row = icon.closest('tr');
+                const rollNumber = row.querySelector('td:first-child').textContent.trim();
+                const vettingStatusCell = row.querySelector('.vetting-status-container');
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-        function toggleDropdown(element) {
-    var dropdownMenu = $(element).siblings('.dropdown-menu');
-    var offset = $(element).offset();
-    var menuHeight = $(dropdownMenu).outerHeight();
-    var windowHeight = $(window).height();
+                if (vettingStatusCell) {
+                    // Update the UI immediately
+                    vettingStatusCell.textContent = 'Pending';
+                    vettingStatusCell.className = 'vetting-status-container vetting-status-pending';
 
-    // Calculate the dropdown position
-    if (offset.top + menuHeight > windowHeight) {
-        $(dropdownMenu).css({
-            top: 'auto',
-            bottom: '0'
-        });
-    } else {
-        $(dropdownMenu).css({
-            top: '50%',
-            bottom: 'auto'
-        });
-    }
-
-    $('.dropdown-menu').not(dropdownMenu).removeClass('show');
-    $(dropdownMenu).toggleClass('show');
-
-    $(dropdownMenu).css({
-        position: 'fixed',
-        left: offset.left + $(element).outerWidth(),
-        top: offset.top - $(window).scrollTop()
-    });
-
-    // Conditional logic for dropdown options
-    var currentStatus = $(element).text().trim();
-    var options = [];
-
-    switch (currentStatus) {
-        case 'Pending':
-            options = ['Discrepancy', 'Rescheduled', 'Revetting'];
-            break;
-        case 'Discrepancy':
-            options = ['Cancelled', 'Revetting', 'Rescheduled'];
-            break;
-        case 'Rescheduled':
-        case 'Cancelled':
-            options = ['Discrepancy'];
-            break;
-        case 'Revetting':
-            options = ['Vetted', 'Discrepancy'];
-            break;
-        case 'Vetted':
-            options = ['Revetting'];
-            break;
-    }
-
-    $(dropdownMenu).children().each(function() {
-        var optionText = $(this).text().trim();
-        if (options.includes(optionText)) {
-            $(this).show();
-        } else {
-            $(this).hide();
-        }
-    });
-}
-
-
-        function updateVettingStatus(rollNumber, vettingStatus, discrepancyDate, discrepancyTime) {
-             if (vettingStatus === 'Discrepancy') {
-               // Show the discrepancy modal
-               $('#discrepancyModal').modal('show');
-        
-               // Store roll number for saving later
-               $('#discrepancyModal').data('roll-number', rollNumber);
-               return; // Prevent further processing until modal is saved
-            }
-            $.ajax({
-                type: 'POST',
-                url: '{% url "cv_vetting_portal" %}',
-                data: {
-                    roll_number: rollNumber,
-                    vetting_status: vettingStatus,
-                    discrepancy_slot_date: discrepancyDate,
-                    discrepancy_slot_time: discrepancyTime,
-                    csrfmiddlewaretoken: '{{ csrf_token }}'
-                },
-                success: function(response) {
-                    location.reload();
-                },
-                error: function(xhr, status, error) {
-                    alert('An error occurred while updating the vetting status.');
+                    // Make an AJAX call to update the status in the database
+                    $.ajax({
+                        url: '{% url "cv_vetting_portal" %}',  // Django URL for resetting vetting status
+                        method: 'POST',
+                        data: {
+                            'roll_number': rollNumber,
+                            'csrfmiddlewaretoken': '{{ csrf_token }}'  // Ensure CSRF token is included
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                console.log('Vetting status updated successfully.');
+                                location.reload();  // Reload the page
+                            } else {
+                                console.error('Failed to update vetting status.');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('AJAX request failed:', error);
+                        }
+                    });
                 }
             });
-        }
-
-function saveDiscrepancyDetails() {
-    var rollNumber = $('#discrepancyModal').data('roll-number');
-    var discrepancyDate = $('#discrepancyDate').val();
-    var discrepancyTime = $('#discrepancyTime').val();
-
-    if (!discrepancyDate || !discrepancyTime) {
-        alert('Please fill in both date and time.');
-        return;
-    }
-
-    // Send data via AJAX
-    $.ajax({
-        type: 'POST',
-        url: '{% url "cv_vetting_portal" %}',
-        data: {
-            roll_number: rollNumber,
-            vetting_status: 'Discrepancy',
-            discrepancy_slot_date: discrepancyDate,
-            discrepancy_slot_time: discrepancyTime,
-            csrfmiddlewaretoken: '{{ csrf_token }}'
-        },
-        success: function(response) {
-            $('#discrepancyModal').modal('hide');
-            location.reload();
-        },
-        error: function(xhr, status, error) {
-            alert('An error occurred while updating the discrepancy details.');
-        }
+        });
     });
-}
+</script>
 
-        function showContactDetails(phone, email) {
-            $('#contactPhone').text(phone);
-            $('#contactEmail').text(email);
-            $('#contactModal').modal('show');
-        }
+<script>
+    function toggleDropdown(element) {
+        var dropdownMenu = $(element).siblings('.dropdown-menu');
+        var offset = $(element).offset();
+        var menuHeight = $(dropdownMenu).outerHeight();
+        var windowHeight = $(window).height();
 
-        function copyToClipboard(elementId) {
-            var text = document.getElementById(elementId).textContent;
-            navigator.clipboard.writeText(text).then(function() {
-                showTooltip(elementId);
-            }, function(err) {
-                alert('Failed to copy text: ', err);
+        // Calculate the dropdown position
+        if (offset.top + menuHeight > windowHeight) {
+            $(dropdownMenu).css({
+                top: 'auto',
+                bottom: '0'
+            });
+        } else {
+            $(dropdownMenu).css({
+                top: '50%',
+                bottom: 'auto'
             });
         }
 
-    function showTooltip(elementId) {
-        var icon = document.querySelector('#' + elementId + ' ~ .copy-icon');
-        $(icon).tooltip({ title: "Copied!", trigger: "manual" }).tooltip('show');
-        setTimeout(function() {
-            $(icon).tooltip('hide');
-        }, 390);
-    }
+        $('.dropdown-menu').not(dropdownMenu).removeClass('show');
+        $(dropdownMenu).toggleClass('show');
 
-        $(document).click(function(event) {
-            if (!$(event.target).closest('.dropdown').length) {
-                $('.dropdown-menu').removeClass('show');
+        $(dropdownMenu).css({
+            position: 'fixed',
+            left: offset.left + $(element).outerWidth(),
+            top: offset.top - $(window).scrollTop()
+        });
+
+        // Conditional logic for dropdown options
+        var currentStatus = $(element).text().trim();
+        var options = [];
+
+        switch (currentStatus) {
+            case 'Pending':
+                options = ['Discrepancy', 'Rescheduled', 'Revetting'];
+                break;
+            case 'Discrepancy':
+                options = ['Cancelled', 'Revetting', 'Rescheduled'];
+                break;
+            case 'Rescheduled':
+            case 'Cancelled':
+                options = ['Discrepancy'];
+                break;
+            case 'Revetting':
+                options = ['Vetted', 'Discrepancy'];
+                break;
+            case 'Vetted':
+                options = ['Revetting'];
+                break;
+        }
+
+        $(dropdownMenu).children().each(function() {
+            var optionText = $(this).text().trim();
+            if (options.includes(optionText)) {
+                $(this).show();
+            } else {
+                $(this).hide();
             }
         });
-    </script>
+    }
 
-<script>
-function autoRefreshPage() {
-    window.location.reload();
-}
+    function updateVettingStatus(rollNumber, vettingStatus, discrepancyDate, discrepancyTime) {
+        if (vettingStatus === 'Discrepancy') {
+            // Show the discrepancy modal
+            $('#discrepancyModal').modal('show');
 
-// Refresh the page every 25 seconds
-setInterval(autoRefreshPage, 25000);
-</script>
-
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Flatpickr on the icon
-    flatpickr("#datePickerIcon", {
-        dateFormat: "Y-m-d",
-        defaultDate: new Date(),
-        onChange: function(selectedDates, dateStr, instance) {
-            filterByDate(dateStr);
+            // Store roll number for saving later
+            $('#discrepancyModal').data('roll-number', rollNumber);
+            return; // Prevent further processing until modal is saved
         }
-    });
+        $.ajax({
+            type: 'POST',
+            url: '{% url "cv_vetting_portal" %}',
+            data: {
+                roll_number: rollNumber,
+                vetting_status: vettingStatus,
+                discrepancy_slot_date: discrepancyDate,
+                discrepancy_slot_time: discrepancyTime,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(response) {
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred while updating the vetting status.');
+            }
+        });
+    }
 
-flatpickr("#discrepancyDate", {
-    dateFormat: "Y-m-d",
-    defaultDate: new Date()
-});
+    function saveDiscrepancyDetails() {
+        var rollNumber = $('#discrepancyModal').data('roll-number');
+        var discrepancyDate = $('#discrepancyDate').val();
+        var discrepancyTime = $('#discrepancyTime').val();
 
-flatpickr("#discrepancyTime", {
-    enableTime: true,
-    noCalendar: true,
-    dateFormat: "H:i",
-    time_24hr: true
-});
+        if (!discrepancyDate || !discrepancyTime) {
+            alert('Please fill in both date and time.');
+            return;
+        }
 
-    // Initialize Bootstrap tooltips
-    $('[data-toggle="tooltip"]:not(.copy-icon)').tooltip();
-});
-
-    function filterByDate(dateStr) {
-        window.location.href = "?date=" + dateStr;
+        // Send data via AJAX
+        $.ajax({
+            type: 'POST',
+            url: '{% url "cv_vetting_portal" %}',
+            data: {
+                roll_number: rollNumber,
+                vetting_status: 'Discrepancy',
+                discrepancy_slot_date: discrepancyDate,
+                discrepancy_slot_time: discrepancyTime,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(response) {
+                $('#discrepancyModal').modal('hide');
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred while updating the discrepancy details.');
+            }
+        });
     }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
 </html>

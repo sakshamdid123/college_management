@@ -1,0 +1,29 @@
+<!-- Discrepancy Modal -->
+<div class="modal fade" id="discrepancyModal" tabindex="-1" role="dialog" aria-labelledby="discrepancyModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="discrepancyModalLabel">Discrepancy Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="discrepancyForm">
+                    <div class="form-group">
+                        <label for="discrepancyDate">Discrepancy Slot Date</label>
+                        <input type="text" class="form-control" id="discrepancyDate" placeholder="Select a date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="discrepancyTime">Discrepancy Slot Time</label>
+                        <input type="text" class="form-control" id="discrepancyTime" placeholder="Select a time" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveDiscrepancyDetails()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,351 @@
+/* General Body and Container Styling */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Aptos', sans-serif;
+    font-size: 14px;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+/* Title and Headers */
+.title {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.title-year {
+    font-size: 1.5em;
+    color: #007bff;
+}
+
+.slots-header {
+    font-weight: bold;
+    margin: 20px 0; /* Reduce the margin */
+    text-align: left; /* Align to the left */
+    color: #343a40; /* Existing color */
+    border-bottom: 2px solid #007bff; /* Add a bottom border for distinction */
+    padding-bottom: 10px; /* Add padding to separate from the table */
+    margin-top: 10px; /* Reduce top margin */
+    margin-left: 0; /* Align to the top left of the table */
+    font-size: 1.5em; /* Slightly smaller font size */
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border: none;
+}
+
+.table-header h2 {
+    margin: 0;
+    border: none;
+}
+
+/* Tables and Icons */
+.table-container {
+    background: white;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.table {
+    margin-bottom: 0;
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+}
+
+.table th,
+.table td {
+    border: 1px solid #dee2e6; /* Light grey borders */
+    vertical-align: middle !important;
+    text-align: center;
+    padding: 8px;
+}
+
+.table thead {
+    color: #000; /* Black color */
+    font-weight: bold; /* Bold text */
+}
+
+.table tbody tr {
+    transition: background-color 0.2s;
+    border: none;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    z-index: 1050;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .175);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    cursor: pointer;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f3f5;
+}
+
+.dropdown-item-red {
+    color: red;
+}
+
+.dropdown-item-black {
+    color: black;
+}
+
+.dropdown-item-yellow {
+    color: #FFD700;
+}
+
+.dropdown-item-green {
+    color: green;
+}
+
+.dropdown-item-pink {
+    color: pink;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+/* Icon Styles */
+.reset-icon {
+    cursor: pointer;
+    margin-right: 0px; /* Space between icon and Vetting Status column */
+    color: red; /* Red color for the icon */
+    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.reset-icon:hover {
+    transform: scale(1.2); /* Slightly enlarge the icon on hover */
+    color: darkred; /* Darker red on hover */
+}
+
+.date-picker-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.date-picker-icon:hover {
+    color: #0056b3;
+}
+
+.fa-file-alt {
+    color: #007bff;
+    font-size: 1.5em;
+}
+
+.fa-file-alt:hover {
+    color: #0056b3;
+}
+
+.copy-icon {
+    cursor: pointer;
+    color: #007bff;
+    margin-left: 10px;
+}
+
+.copy-icon:hover {
+    color: #0056b3;
+}
+
+.contact-icon,
+.proof-icon,
+.repository-icon {
+    font-size: 20px; /* Match size with A, B, C icons */
+}
+
+.contact-icon {
+    color: #28a745; /* Green color */
+    cursor: pointer;
+}
+
+.proof-icon {
+    color: #17a2b8; /* Blue color */
+    cursor: pointer;
+}
+
+.repository-icon {
+    color: #ffc107; /* Yellow color */
+    cursor: pointer;
+}
+
+/* Vetting Status and Related Icons */
+.vetting-status-container {
+    padding: 5px 10px;
+    width: 140px;
+    border-radius: 5px;
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.vetting-status-discrepancy {
+    background-color: red;
+}
+
+.vetting-status-cancelled {
+    background-color: black;
+}
+
+.vetting-status-revetting {
+    background-color: #FFD700;
+    color: black;
+}
+
+.vetting-status-vetted {
+    background-color: green;
+}
+
+.vetting-status-rescheduled {
+    background-color: #e0218a;
+}
+
+.vetting-status-pending {
+    background-color: #FFA700;
+}
+
+.vetting-status-pending:hover {
+    background-color: #B44A33; /* Slightly darker yellow on hover */
+}
+
+.vetting-status-discrepancy:hover {
+    background-color: darkred; /* Slightly darker red on hover */
+}
+
+.vetting-status-cancelled:hover {
+    background-color: #bbbbbb; /* Slightly lighter black on hover */
+}
+
+.vetting-status-revetting:hover {
+    background-color: #FFF1A9; /* Slightly darker yellow on hover */
+}
+
+.vetting-status-vetted:hover {
+    background-color: #C7EA46; /* Slightly darker green on hover */
+}
+
+.vetting-status-rescheduled:hover {
+    background-color: pink; /* Slightly darker pink on hover */
+}
+
+.due-indicator,
+.revetting-icon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.vetting-icons-container {
+    margin-top: 5px;
+}
+
+.cv-variant {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin: 2px;
+    text-align: center;
+    line-height: 25px; /* Adjusted line-height to match the height */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: black; /* Default color for no data */
+    background-color: transparent; /* Remove background color */
+}
+
+.cv-variant.has-data a {
+    color: green; /* Color for variant with data */
+}
+
+.cv-variant.no-data a {
+    color: black; /* Color for variant without data */
+}
+
+/* Modals */
+.modal-content {
+    background-color: #343a40;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-header .close {
+    color: white;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.modal-body h5 {
+    margin-bottom: 10px;
+}
+
+/* Input Tooltip Icon */
+.input-tooltip-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #6c757d;
+    cursor: pointer;
+}
+
+.input-tooltip-icon:hover {
+    color: #adb5bd;
+}
+
+/* Miscellaneous */
+.no-border {
+    border: none !important;
+}
+
+
+.details-container {
+    background-color: #495057;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 0.9em;
+    color: #ffffff;
+}
