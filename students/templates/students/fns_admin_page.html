@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FNS Admin Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Aptos', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        h4 {
+            font-size: 1.2em;
+            font-weight: 400;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .sc-section {
+            background-color: #fff;
+            border: 1px solid #e7e7e7;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 45%; /* Two tables per row */
+            max-width: 550px;
+            min-width: 300px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sc-name {
+            background-color: #ecf0f1;
+            padding: 8px 12px;
+            font-size: 1em;
+            font-weight: 500;
+            border-bottom: 1px solid #e7e7e7;
+            text-align: center;
+        }
+
+        .sc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        .sc-table th, .sc-table td {
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 0.85em;
+            border-bottom: 1px solid #e7e7e7;
+            white-space: nowrap;
+        }
+
+        .sc-table th {
+            background-color: #f8f9fa;
+            font-weight: 500;
+        }
+
+        .sc-table tbody {
+            display: block;
+            max-height: 180px; /* Limit to show 5 rows with padding */
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #888 #e7e7e7;
+        }
+
+        .sc-table tbody::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sc-table tbody::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 10px;
+        }
+
+        .sc-table tbody::-webkit-scrollbar-track {
+            background-color: #e7e7e7;
+        }
+
+        .sc-table tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .sc-table thead, .sc-table tfoot {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .status-label {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .status-pending {
+            background-color: #f39c12;
+        }
+
+        .status-discrepancy {
+            background-color: #e74c3c;
+        }
+
+        .status-cancelled {
+            background-color: #95a5a6;
+        }
+
+        .status-revetting {
+            background-color: #8e44ad;
+        }
+
+        .status-rescheduled {
+            background-color: #2980b9;
+        }
+
+        .status-vetted {
+            background-color: #27ae60;
+        }
+
+        @media screen and (max-width: 768px) {
+            .sc-section {
+                width: 100%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>FNS Admin Page</h2>
+        <h4>Welcome, {{ fns_buddy_name }}</h4>
+
+        {% for sc_name, slots in sc_data.items %}
+        <div class="sc-section">
+            <div class="sc-name">SC Name: {{ sc_name }}</div>
+            <table class="sc-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Roll Number</th>
+                        <th>Name</th>
+                        <th>Vetting Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for slot in slots %}
+                    <tr>
+                        <td>{{ slot.date }}</td>
+                        <td>{{ slot.roll_number.roll_number }}</td>
+                        <td>{{ slot.roll_number.name }}</td>
+                        <td>
+                            <span class="status-label status-{{ slot.vetting_status|lower }}">{{ slot.vetting_status }}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

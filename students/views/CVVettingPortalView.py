@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse
+from django.utils import timezone
 from students.models import StudentData, VettingSlot, SCLoginCredentials
 from datetime import datetime, timedelta
 from django.template.loader import render_to_string
@@ -8,6 +9,8 @@ from django.utils.html import strip_tags
 from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
 import os
+from django.views.decorators.cache import never_cache
+
 
 class SCLoginView(View):
     def get(self, request):
@@ -29,7 +32,8 @@ class CVVettingPortalView(View):
             return redirect('sc_login')
 
         sc_name = request.session['sc_name']
-        current_date_str = request.GET.get('date', datetime.now().strftime('%Y-%m-%d'))
+        current_datetime = timezone.now()  # Use timezone aware datetime
+        current_date_str = request.GET.get('date', current_datetime.strftime('%Y-%m-%d'))
         current_date = datetime.strptime(current_date_str, '%Y-%m-%d').date()
         current_datetime = datetime.now()
 
@@ -63,7 +67,6 @@ class CVVettingPortalView(View):
             if sd.roll_number == vs.roll_number.roll_number
         ]
 
-
         # Pass current_date as a string
         return render(request, 'students/cv_vetting_portal.html', {'data': data, 'current_date': current_date_str})
 
@@ -83,3 +86,28 @@ class CVVettingPortalView(View):
         VettingSlot.objects.filter(roll_number__roll_number=roll_number).update(**update_data)
         
         return JsonResponse({'success': True})
+
+def FNSAdminPageView(request):
+    # Check if SC is logged in by checking the session
+    if 'sc_name' not in request.session:
+        return redirect('sc_login')
+
+    # Get the logged-in FNS Buddy's name from the session
+    fns_buddy_name = request.session['sc_name']
+
+    # Fetch all SCs associated with the logged-in FNS Buddy
+    sc_slots = VettingSlot.objects.filter(fns_buddy=fns_buddy_name)
+
+    # Organize the data by SC Name
+    sc_data = {}
+    for slot in sc_slots:
+        if slot.sc_name not in sc_data:
+            sc_data[slot.sc_name] = []
+        sc_data[slot.sc_name].append(slot)
+    
+    context = {
+        'sc_data': sc_data,
+        'fns_buddy_name': fns_buddy_name,
+    }
+
+    return render(request, 'students/fns_admin_page.html', context)
